@@ -165,8 +165,8 @@ def get_dataset(opts):
                 et.ExtNormalize(mean=[0.485, 0.456, 0.406],
                                 std=[0.229, 0.224, 0.225]),
             ])
-        train_dst, val_dst = creator('D:/Downloads/rdata512/rdata512/train_pre/images',
-                                    'D:/Downloads/rdata512/rdata512/train_pre/targets',train_transform,val_transform)
+        train_dst, val_dst = creator('rdata512/train_pre/images',
+                                    'rdata512/train_pre/targets',train_transform,val_transform)
 
     
     return train_dst, val_dst
@@ -211,9 +211,9 @@ def validate( model, loader, device, metrics, ret_samples_ids=None):
                     target =(target*255).astype(np.uint8)
                     pred = (pred*255).astype(np.uint8)
 
-                    Image.fromarray(image).save('D:/jups/newest_deeplabv3+/DeepLabV3Plus-Pytorch/results/%d_image.png' % img_id)
-                    Image.fromarray(target).save('D:/jups/newest_deeplabv3+/DeepLabV3Plus-Pytorch/results/%d_target.png' % img_id)
-                    Image.fromarray(pred).save('D:/jups/newest_deeplabv3+/DeepLabV3Plus-Pytorch/results/%d_pred.png' % img_id)
+                    Image.fromarray(image).save('results/%d_image.png' % img_id)
+                    Image.fromarray(target).save('results/%d_target.png' % img_id)
+                    Image.fromarray(pred).save('results/%d_pred.png' % img_id)
 
                     fig = plt.figure()
                     plt.imshow(image)
@@ -222,7 +222,7 @@ def validate( model, loader, device, metrics, ret_samples_ids=None):
                     ax = plt.gca()
                     ax.xaxis.set_major_locator(matplotlib.ticker.NullLocator())
                     ax.yaxis.set_major_locator(matplotlib.ticker.NullLocator())
-                    plt.savefig('D:/jups/newest_deeplabv3+/DeepLabV3Plus-Pytorch/results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
+                    plt.savefig('results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
                     plt.close()
                     img_id += 1
 
